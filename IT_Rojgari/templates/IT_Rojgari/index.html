@@ -1,0 +1,41 @@
+{% extends "It_Rojgari/_base.html" %} {% load humanize %} {% block content %}
+
+<h3 class="mt-6 font-semibold text-emerald-900 text-xl text-center">
+  Currently active Job
+</h3>
+<div class="grid grid-cols-4 mx-auto gap-4">
+  {% for post in job_posts %}
+  <div
+    class="flex flex-col justify-between flex-wrap border w-full h-[210px] rounded mt-5 px-3 py-4 bg-gray-50 hover:border-2 hover:cursor-pointer"
+  >
+    <div>
+      <p class="text-lg font-bold text-gray-700">{{post.title}}</p>
+      <p
+        class="text-[10px] bg-gray-600 w-[60px] text-center mt-1 text-white rounded-md semi-bold"
+      >
+        {{post.type}}
+      </p>
+
+      <p class="text-xs font-semibold mt-5 text-gray-900">
+        Company: {{post.company}}
+      </p>
+
+      <p class="text-[15px] font-bold mt-1.5 text-gray-700">
+        Salary: Rs.{{post.salery|intcomma}} /-
+      </p>
+    </div>
+
+    <div>
+      <a class="w-full text-left" href="{% url 'job-details' post.id %}">
+        <button
+          class="bg-emerald-900 w-full rounded text-white text-sm py-2 hover:bg-emerald-800"
+        >
+          View Details
+        </button>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
